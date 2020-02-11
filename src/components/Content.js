@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../store/actionCreators';
 
 const Content = props => {
-	const { list, checkboxChangeAction } = props;
+	const { list, checkboxChangeAction, btnClickAction } = props;
 	const renderItem = completed => {
 		return list.filter(item => item.completed === completed).map(item =>
 			<li key={item.id}>
@@ -11,20 +11,20 @@ const Content = props => {
 				<p>
 					{item.title}
 				</p>
-				<i data-id={item.id} />
+				<i data-id={item.id} onClick={btnClickAction} />
 			</li>
 		);
 	};
 	return (
 		<section>
 			<h2>
-				正在进行 <span id="todocount">1</span>
+				正在进行 <span id="todocount">{renderItem(false).length}</span>
 			</h2>
 			<ol id="todolist" className="demo-box">
 				{renderItem(false)}
 			</ol>
 			<h2>
-				已经完成 <span id="donecount">0</span>
+				已经完成 <span id="donecount">{renderItem(true).length}</span>
 			</h2>
 			<ul id="donelist">
 				{renderItem(true)}
