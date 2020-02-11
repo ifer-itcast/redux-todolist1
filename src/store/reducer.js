@@ -1,4 +1,4 @@
-import { CHANGE_INPUT, ADD_ITEM } from './actionTypes';
+import { CHANGE_INPUT, ADD_ITEM, MODIFY_ITEM } from './actionTypes';
 
 const defaultState = {
 	inputValue: '',
@@ -18,6 +18,10 @@ const reducer = (state = defaultState, action) => {
 				id: action.id
 			});
 			newState.inputValue = '';
+			return newState;
+		case MODIFY_ITEM:
+			const idx = newState.list.findIndex(item => item.id === action.id);
+			newState.list[idx].completed = action.completed;
 			return newState;
 		default:
 			return state;

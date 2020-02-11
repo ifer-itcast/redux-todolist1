@@ -1,4 +1,4 @@
-import { CHANGE_INPUT, ADD_ITEM } from './actionTypes';
+import { CHANGE_INPUT, ADD_ITEM, MODIFY_ITEM } from './actionTypes';
 export const inputChangeAction = e => ({
 	type: CHANGE_INPUT,
 	value: e.target.value
@@ -9,4 +9,10 @@ export const inputKeyUpAction = value => ({
 	title: value,
 	completed: false,
 	id: (+new Date()).toString()
+});
+
+export const checkboxChangeAction = e => ({
+	type: MODIFY_ITEM,
+	completed: e.target.checked,
+	id: e.target.dataset.id
 });

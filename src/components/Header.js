@@ -7,6 +7,7 @@ const Header = props => {
 	// inputChangeAction 确实是需要实时发起 action
 	const handleKeyUp = e => {
 		// 确实是 keyCode 等于 13 的时候才需要发起 action
+		// 调用 inputKeyUpAction 时必须保证每次返回带 type 的对象，除非用到 redux-thunk
 		if (e.keyCode === 13) {
 			if (!e.target.value) {
 				return alert('内容不能为空');
